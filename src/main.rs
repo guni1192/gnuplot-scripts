@@ -1,4 +1,6 @@
 extern crate csv;
+#[macro_use]
+extern crate clap;
 
 use std::path::Path;
 use std::fs::File;
@@ -71,7 +73,8 @@ fn main() {
     let mut fg = Figure::new();
 
     fg.axes2d()
-        .lines(&x, &y, &[Caption(caption), Color("black")]);
+        .lines(&x, &y, &[Caption(&caption), Color("black")]);
 
+    fg.set_terminal("epscairo", &format!("{}.eps", caption));
     fg.show();
 }
